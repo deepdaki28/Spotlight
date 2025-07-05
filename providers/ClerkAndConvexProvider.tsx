@@ -24,7 +24,7 @@ export default function ClerkAndConvexProvider({
   return (
     <ClerkProvider tokenCache={tokenCache} publishableKey={publishableKey}>
       <ConvexProviderWithClerk useAuth={useAuth} client={convex}>
-        <ClerkLoaded>(children)</ClerkLoaded>
+        <ClerkLoaded>{children}</ClerkLoaded>
       </ConvexProviderWithClerk>
     </ClerkProvider>
   );
