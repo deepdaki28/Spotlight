@@ -3,17 +3,6 @@ In this one‑stop tutorial you’ll build a production‑ready **real‑time so
 
 ---
 
-## 🎯 What You'll Build
-
-This isn’t a UI demo—Spotlight is a **full‑stack, real‑time** social platform.
-
-✅ Works on **physical devices & simulators** (Android / iOS)  
-✅ Everything updates **instantly** across users (likes, follows, comments)  
-✅ No native Swift / Kotlin required—just JavaScript & TypeScript  
-✅ From ZERO → to HERO in **one video**
-
----
-
 ## 🧑‍🍳 App Features Overview
 
 - 🔐 **Google Auth** via Clerk (seamless one‑tap login)
