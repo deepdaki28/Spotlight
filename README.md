@@ -1,5 +1,5 @@
 Welcome to **Spotlight**!  
-In this one‑stop tutorial you’ll build a production‑ready **real‑time social network** that runs on **iOS, Android, and the web**—all with **React Native + Expo**, **Convex**, and **Clerk**.
+**Real‑time social network** that runs on **iOS, Android, and the web**—all with **React Native + Expo**, **Convex**, and **Clerk**.
 
 ---
 
@@ -15,20 +15,6 @@ In this one‑stop tutorial you’ll build a production‑ready **real‑time so
 - 🔄 **Follow / Unfollow** other users
 - 🗑️ **Delete Own Posts** with confirmation alert
 - 🎨 **Custom fonts & splash / app icon** included
-
----
-
-## 🧠 What You’ll Learn
-
-- 🏗️ Structure a cross‑platform app with **Expo Router**
-- ⚡ Wire up a **real‑time backend** using **Convex functions & database**
-- 🔑 Implement secure auth & session management with **Clerk**
-- 📱 Master core RN components: `View`, `Text`, `Image`, `FlatList`, `ScrollView`, `Pressable`, `KeyboardAvoidingView`, `Modal`, icons…
-- 🚀 Optimize performance (virtualization, lazy loading, memoization)
-- 🖼️ Handle device image selection & uploads
-- 🧭 Combine **stack & tab navigators** safely with `SafeAreaView`
-- 🎁 Ship to the web with Expo’s single‑codebase magic
-- 💬 Talk interview‑worthy topics: **webhooks**, real‑time syncing, optimistic UI
 
 ---
 
