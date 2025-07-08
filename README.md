@@ -1,16 +1,5 @@
 Welcome to **Spotlight**!  
-In this one‑stop tutorial you’ll build a production‑ready **real‑time social network** that runs on **iOS, Android, and the web**—all with **React Native + Expo**, **Convex**, and **Clerk**.
-
----
-
-## 🎯 What You'll Build
-
-This isn’t a UI demo—Spotlight is a **full‑stack, real‑time** social platform.
-
-✅ Works on **physical devices & simulators** (Android / iOS)  
-✅ Everything updates **instantly** across users (likes, follows, comments)  
-✅ No native Swift / Kotlin required—just JavaScript & TypeScript  
-✅ From ZERO → to HERO in **one video**
+**Real‑time social network** that runs on **iOS, Android, and the web**—all with **React Native + Expo**, **Convex**, and **Clerk**.
 
 ---
 
@@ -26,20 +15,6 @@ This isn’t a UI demo—Spotlight is a **full‑stack, real‑time** social pla
 - 🔄 **Follow / Unfollow** other users
 - 🗑️ **Delete Own Posts** with confirmation alert
 - 🎨 **Custom fonts & splash / app icon** included
-
----
-
-## 🧠 What You’ll Learn
-
-- 🏗️ Structure a cross‑platform app with **Expo Router**
-- ⚡ Wire up a **real‑time backend** using **Convex functions & database**
-- 🔑 Implement secure auth & session management with **Clerk**
-- 📱 Master core RN components: `View`, `Text`, `Image`, `FlatList`, `ScrollView`, `Pressable`, `KeyboardAvoidingView`, `Modal`, icons…
-- 🚀 Optimize performance (virtualization, lazy loading, memoization)
-- 🖼️ Handle device image selection & uploads
-- 🧭 Combine **stack & tab navigators** safely with `SafeAreaView`
-- 🎁 Ship to the web with Expo’s single‑codebase magic
-- 💬 Talk interview‑worthy topics: **webhooks**, real‑time syncing, optimistic UI
 
 ---
 
