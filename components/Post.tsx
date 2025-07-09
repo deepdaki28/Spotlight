@@ -3,13 +3,14 @@ import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { styles } from "@/styles/feed.styles";
 import { Ionicons } from "@expo/vector-icons";
-import { useMutation } from "convex/react";
+import { useMutation, useQuery } from "convex/react";
 import { Image } from "expo-image";
 import { Link } from "expo-router";
 import React, { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import CommentsModel from "./CommentsModel";
 import { formatDistanceToNow } from "date-fns";
+import { useUser } from "@clerk/clerk-expo";
 
 type PostProps = {
   post: {
@@ -34,8 +35,17 @@ export default function Post({ post }: PostProps) {
   const [likesCount, setLikesCount] = useState(post.likes);
   const [commentsCount, setCommentsCount] = useState(post.comments);
   const [showComments, setShowComments] = useState(false);
+  const [isBookmarked, setIsBookmarked] = useState(post.isBookmarked);
 
   const toggleLike = useMutation(api.posts.toggleLike);
+  const toggleBookmark = useMutation(api.bookmarks.toggleBookmark);
+  const deletePost = useMutation(api.posts.deletePost);
+
+  const { user } = useUser();
+  const currentUser = useQuery(
+    api.users.getUserByClerk,
+    user ? { clerkId: user.id } : "skip"
+  );
 
   const handleLike = async () => {
     try {
@@ -46,6 +56,19 @@ export default function Post({ post }: PostProps) {
       console.log("Error toggling like:", error);
     }
   };
+
+  const handleBookmark = async () => {
+    const newIsBookmarked = await toggleBookmark({ postId: post._id });
+    setIsBookmarked(newIsBookmarked);
+  };
+
+  const handleDelete = async () => {
+    try {
+      await deletePost({postId:post._id})
+    } catch (error) {
+      console.error("Error deleting post:", error)
+    }
+  }
 
   return (
     <View style={styles.post}>
@@ -64,14 +87,20 @@ export default function Post({ post }: PostProps) {
           </TouchableOpacity>
         </Link>
 
-        {/* todo : fix it */}
-        {/* <TouchableOpacity>
-                <Ionicons name="ellipsis-horizontal" size={20} color={COLORS.white}/>
-            </TouchableOpacity> */}
-
-        <TouchableOpacity>
-          <Ionicons name="trash-outline" size={20} color={COLORS.white} />
-        </TouchableOpacity>
+        {/* if I'm the owner of the post then I can delete it */}
+        {post.author._id === currentUser?._id ? (
+          <TouchableOpacity onPress={handleDelete}>
+            <Ionicons name="trash-outline" size={20} color={COLORS.primary} />
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity>
+            <Ionicons
+              name="ellipsis-horizontal"
+              size={20}
+              color={COLORS.white}
+            />
+          </TouchableOpacity>
+        )}
       </View>
 
       {/* Image */}
@@ -101,8 +130,12 @@ export default function Post({ post }: PostProps) {
             />
           </TouchableOpacity>
         </View>
-        <TouchableOpacity>
-          <Ionicons name="bookmark-outline" size={22} color={COLORS.white} />
+        <TouchableOpacity onPress={handleBookmark}>
+          <Ionicons
+            name={isBookmarked ? "bookmark" : "bookmark-outline"}
+            size={22}
+            color={COLORS.white}
+          />
         </TouchableOpacity>
       </View>
 
@@ -121,14 +154,17 @@ export default function Post({ post }: PostProps) {
         )}
 
         {commentsCount > 0 && (
-        <TouchableOpacity onPress={() => setShowComments(true)}>
-          <Text style={styles.commentsText}>View All {commentsCount} comments</Text>
-        </TouchableOpacity>
+          <TouchableOpacity onPress={() => setShowComments(true)}>
+            <Text style={styles.commentsText}>
+              View All {commentsCount} comments
+            </Text>
+          </TouchableOpacity>
         )}
 
-        <Text style={styles.timeAgo}>{formatDistanceToNow(post._creationTime, {addSuffix:true})}</Text>
+        <Text style={styles.timeAgo}>
+          {formatDistanceToNow(post._creationTime, { addSuffix: true })}
+        </Text>
       </View>
-      
 
       <CommentsModel
         postId={post._id}
