@@ -15,6 +15,7 @@ import {
   View,
 } from "react-native";
 import { styles } from "../../styles/feed.styles";
+import StoriesSection from "@/components/Stories";
 
 export default function Index() {
   const { signOut } = useAuth();
@@ -46,20 +47,6 @@ export default function Index() {
     </View>
   );
 }
-
-const StoriesSection = () => {
-  return (
-    <ScrollView
-      horizontal
-      showsHorizontalScrollIndicator={false}
-      style={styles.storiesContainer}
-    >
-      {STORIES.map((story) => (
-        <Story key={story.id} story={story} />
-      ))}
-    </ScrollView>
-  );
-};
 
 const NoPostsFound = () => (
   <View

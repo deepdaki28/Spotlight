@@ -52,7 +52,8 @@ export default defineSchema({
         postId : v.optional(v.id("posts")),
         commentId : v.optional(v.id("comments")),
 
-    }).index("by_recevier", ["receiverId"]),
+    }).index("by_recevier", ["receiverId"])
+    .index("by_post", ["postId"]),
 
     bookmarks : defineTable({
         userId : v.id("users"),
